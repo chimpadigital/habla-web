@@ -88,6 +88,7 @@ $mail->addAddress('sdesigncba@gmail.com','Habla');
 $mail->isHTML(true);
 $mail->Subject = $email_subject;
 $mail->Body    = $email_message2;
+$mail->CharSet = 'UTF-8';
 $mail->Send();
 
 
@@ -112,11 +113,10 @@ $mail2->addAddress ($email);
 $mail2->isHTML(true);
 $mail2->Subject = $email_subject2;
 $mail2->Body    = $email_message;
+$mail2->CharSet = 'UTF-8';
 $mail2->Send();
 
 
-$mail->CharSet = 'UTF-8';
-$mail2->CharSet = 'UTF-8';
 if (!$mail->send()) {
     $mail_enviado=false;
     $mail_error .= 'Mailer Error: '.$mail->ErrorInfo;
