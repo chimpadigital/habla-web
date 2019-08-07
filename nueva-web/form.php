@@ -30,7 +30,7 @@ die();
 
 $email_message = "Confirmación de terminos y condiciones :\n\n";
 $email_message .= "<p>Este es un mail de confirmación acepta los terminos y condiciones de trabajo estipulados por Habla! por </p>";
-@email_message.= "<p>Nombre y Apellido: " . $_POST['nombre'] ."</p>";
+$email_message .= "<p>Nombre y Apellido: " . $_POST['nombre'] . "</p>";
 $email_message .= "<p>Gracias por elegirnos</p>";
 $email_message .= "<h5>Habla!</h5>";
 $email_message2 = "<h1>Detalles del formulario :</h1><br>";
