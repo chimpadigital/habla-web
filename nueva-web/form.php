@@ -74,7 +74,7 @@ if(!isset($_POST['nombre']) ||
     
     $mail->addReplyTo('quien@habla.com.ar','Habla');
     
-    $mail->addAddress('sdesigncba@gmail.com','Habla');
+    $mail->addAddress('quien@habla.com.ar','Habla');
     // $mail->addCc('cristiancastro.pr1991@gmail.com','Clínica Santia Lucia');
     // $mail->addCc('quirofanosantaluciasalta@gmail.com','Clínica Santia Lucia');
     $mail->isHTML(true);
