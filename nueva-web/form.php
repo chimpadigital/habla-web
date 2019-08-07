@@ -90,12 +90,28 @@ $mail->Subject = $email_subject;
 $mail->Body    = $email_message2;
 $mail->Send();
 
-$mail->ClearAllRecipients();
 
-$mail->addAddress ($email);
-$mail->Subject = $email_subject2;
-$mail->Body    = $email_message;
-$mail->Send();
+$mail2 = new PHPMailer(true);
+$mail2->isSMTP();
+$mail2->Host = 'silex14web.com';
+$mail2->Port = 2525;
+$mail2->SMTPAuth = true;
+$mail2->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+$mail2->Username = 'quien-habla.com.ar';
+$mail2->Password = 'Habla753';
+
+$mail2->setFrom('quien@habla.com.ar', 'Habla');
+$mail2->addReplyTo('quien@habla.com.ar','Habla');
+$mail2->addAddress ($email);
+$mail2->Subject = $email_subject2;
+$mail2->Body    = $email_message;
+$mail2->Send();
 
 
 $mail->CharSet = 'UTF-8';
