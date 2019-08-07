@@ -83,20 +83,28 @@ if (!$mail->send()) {
     $mail_enviado=true;
     $mail_error='Mensaje Enviado, Gracias';
 }
+// Ahora se envía el e-mail usando la función mail() de PHP
+//$headers = 'From: Ralseff <info@ralseff.com>' . "\r\n" .
+//    'Reply-To: noreply@ralseff.com' . "\r\n" .
+//    'Cc: ralseff@chimpancedigital.com.ar' . "\r\n" .
+//    'X-Mailer: PHP/' . phpversion();
+//$mail_enviado = @mail($email_to, utf8_decode($email_subject), utf8_decode($email_message), $headers);
 
 
-echo $mail_enviado;
+if($mail_enviado)
+{
+echo "<script>location.href='gracias.html';</script>";
 
-// if($mail_enviado)
-// {
-// echo "<script>location.href='gracias.html';</script>";
+}
+else
+{
+	echo "no se pudo enviar" ;
+}
 
-// }
-// else
-// {
-// 	echo "no se pudo enviar" ;
-// }
-
+// Envia un e-mail para el remitente, agradeciendo la visita en el sitio, y diciendo que en breve el e-mail sera respondido. 
+// $mensaje2  = "Hola" . $_POST['name'] . ". Gracias por contactarnos. Un asesor se comunicará con usted a la brevedad..."; 
+// $mensaje2 .= "PD - No es necesario responder este mensaje."; 
+// $envia =  mail($_POST['email'],"Su mensaje fué recibido!",$mensaje2,$headers);
 
 
 

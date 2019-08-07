@@ -109,6 +109,7 @@ $mail2->Body    = $email_message;
 $mail2->CharSet = 'UTF-8';
 $mail2->Send();
 
+echo $mail_enviado;
 
 if (!$mail->send()) {
     $mail_enviado=false;
