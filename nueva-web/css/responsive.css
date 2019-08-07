@@ -111,6 +111,10 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+    .btr-radius{border-top-right-radius: 0px}
+.btl-radius{border-top-left-radius: 0px}
+.bbr-radius{border-bottom-right-radius: 0px}
+.bbl-radius{border-bottom-left-radius: 0px}
     .header_area {
         padding: 0;
     }
