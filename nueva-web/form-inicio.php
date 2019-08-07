@@ -33,7 +33,7 @@ $email_message2 .= "<p>Mensaje: " . $_POST['message'] ."</p>";
 
 
 //inicio script grabar datos en csv
-$fichero = 'terminos y condiciones aceptados.csv';//nombre archivo ya creado
+$fichero = 'consultas home.csv';//nombre archivo ya creado
 //crear linea de datos separado por coma
 $fecha=date("d-m-y H:i:s");
 $linea = $fecha.";".$nombre.";".$telefono.";".$mensaje."\n";
