@@ -82,7 +82,7 @@ $mail->setFrom('quien@habla.com.ar', 'Habla');
 
 $mail->addReplyTo('quien@habla.com.ar','Habla');
 
-$mail->addAddress('sprados@chimpancedigital.com.ar','Habla');
+$mail->addAddress('sdesigncba@gmail.com','Habla');
 // $mail->addCc('cristiancastro.pr1991@gmail.com','Clínica Santia Lucia');
 // $mail->addCc('quirofanosantaluciasalta@gmail.com','Clínica Santia Lucia');
 $mail->isHTML(true);
