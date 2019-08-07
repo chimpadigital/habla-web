@@ -81,7 +81,7 @@ a.fn.owlCarousel.Constructor.Plugins.Animate=e}(window.Zepto||window.jQuery,wind
 			changeHash: false,
 			easing: 'swing',
 			filter: '',
-			scrollSpeed: 750,
+			scrollSpeed: 250,
 			scrollThreshold: 0.5,
 			begin: false,
 			end: false,
@@ -255,11 +255,11 @@ a.fn.owlCarousel.Constructor.Plugins.Animate=e}(window.Zepto||window.jQuery,wind
 
 	OnePageNav.defaults = OnePageNav.prototype.defaults;
 
-	$.fn.onePageNav = function(options) {
-		return this.each(function() {
-			new OnePageNav(this, options).init();
-		});
-	};
+	// $.fn.onePageNav = function(options) {
+	// 	return this.each(function() {
+	// 		new OnePageNav(this, options).init();
+	// 	});
+	// };
 
 })( jQuery, window , document );
 
