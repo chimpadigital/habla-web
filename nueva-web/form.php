@@ -29,7 +29,7 @@ die();
 }
 
 $email_message = "Confirmación de terminos y condiciones :\n\n";
-$email_message .= "<p>Este es un mail de confirmación acepta los terminos y condiciones de trabajo estipulados por Habla! por </p>";
+$email_message .= "<p>Este es un mail de confirmación aceptando las bases y condiciones de trabajo estipuladas por Habla! a nombre de: </p>";
 $email_message .= "<p>Nombre y Apellido: " . $_POST['nombre'] . "</p>";
 $email_message .= "<p>Gracias por elegirnos</p>";
 $email_message .= "<h5>Habla!</h5>";
@@ -54,7 +54,7 @@ file_put_contents($fichero, $linea, FILE_APPEND | LOCK_EX);
 
 $mail = new PHPMailer;
 $mail->isSMTP();
-$mail->SMTPDebug = 4;
+$mail->SMTPDebug = 0;
 $mail->Debugoutput = 'html';
 
 $mail->Host = 'silex14web.com';
