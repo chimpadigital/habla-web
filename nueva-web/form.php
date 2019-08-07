@@ -90,7 +90,7 @@ $mail->Subject = $email_subject;
 $mail->Body    = $email_message2;
 $mail->Send();
 
-$mail->ClearAddresses();
+$mail->ClearAllRecipients();
 
 $mail->addAddress ($email);
 $mail->Subject = $email_subject2;
