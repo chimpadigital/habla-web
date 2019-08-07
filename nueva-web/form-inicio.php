@@ -90,6 +90,7 @@ if (!$mail->send()) {
 //    'X-Mailer: PHP/' . phpversion();
 //$mail_enviado = @mail($email_to, utf8_decode($email_subject), utf8_decode($email_message), $headers);
 
+echo $mail_enviado;
 
 if($mail_enviado)
 {
