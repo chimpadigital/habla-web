@@ -14,7 +14,7 @@ $email = $_POST['email'];
 $empresa = $_POST['empresa'];
 
 
-$email_subject = "Consulta campaña Clínica de ojos";
+$email_subject = "Confirmación de trabajo Habla!";
 $email_subject2 = "Confirmación de trabajo Habla!";
 
 // Aquí se deberían validar los datos ingresados por el usuario

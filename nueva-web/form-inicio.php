@@ -13,7 +13,7 @@ $telefono = $_POST['phone'];
 $mensaje = $_POST['message'];
 
 
-$email_subject = "Consulta campaña Clínica de ojos";
+$email_subject = "Consulta home Habla";
 $email_subject2 = "Confirmación de trabajo Habla!";
 
 // Aquí se deberían validar los datos ingresados por el usuario
