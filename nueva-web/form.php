@@ -109,6 +109,7 @@ $mail2->Password = 'Habla753';
 $mail2->setFrom('quien@habla.com.ar', 'Habla');
 $mail2->addReplyTo('quien@habla.com.ar','Habla');
 $mail2->addAddress ($email);
+$mail2->isHTML(true);
 $mail2->Subject = $email_subject2;
 $mail2->Body    = $email_message;
 $mail2->Send();
