@@ -67,15 +67,7 @@ $mail->SMTPOptions = array(
         'allow_self_signed' => true
     )
 );
-// $mail->SMTPSecure = false;
-// $mail->SMTPAutoTLS = false;
-// $mail->SMTPOptions = array(
-//     'ssl' => array(
-//         'verify_peer' => false,
-//         'verify_peer_name' => false,
-//         'allow_self_signed' => true
-//     )
-// );
+
 $mail->Username = 'quien-habla.com.ar';
 $mail->Password = 'Habla753';
 $mail->setFrom('quien@habla.com.ar', 'Habla');

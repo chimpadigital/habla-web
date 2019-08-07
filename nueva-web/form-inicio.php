@@ -1,75 +1,111 @@
 <?php
-session_start();
-//Retrieve form data. 
-//GET - user submitted data using AJAX
-//POST - in case user does not support javascript, we'll use POST instead
-$nombre = ($_GET['nombre']) ? $_GET['nombre'] : $_POST['nombre'];
-$email = ($_GET['email']) ?$_GET['email'] : $_POST['email'];
-$empresa = ($_GET['empresa']) ?$_GET['empresa'] : $_POST['empresa'];
-$dni = ($_GET['dni']) ?$_GET['dni'] : $_POST['dni'];
-
-//flag to indicate which method it uses. If POST set it to 1
-
-if ($_POST) $post=1;
+require 'PHPMailerAutoload.php';
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+// Debes editar las próximas dos líneas de código de acuerdo con tus preferencias
+//$email_to = "sdesigncba@gmail.com";
+//$email_to = "carlosdanielgutierrez@gmail.com";
 
 
-//if the errors array is empty, send the mail
-if (!$errors) {
+// $email_to ="info@ralseff.com";
 
-	//recipient - replace your email here
-	$to = 'quien@habla@gmail.com';	
-	//sender - from the form
-	$from = $nombre . ' <' . $email . '>';
-	
-	//subject and the html message
-	$subject = 'Nueva consulta de ' . $nombre;	
-	$message = 'Nombre: ' . $nombre . '<br/><br/>
-		       E-mail: ' . $email . '<br/><br/>		
-		       Empresa: ' . $empresa . '<br/><br/>
-		       DNI: ' . $dni . '<br/><br/>';
+$nombre = $_POST['name'];
+$telefono = $_POST['phone'];
+$mensaje = $_POST['message'];
 
-	//send the mail
-	$result = sendmail($to, $subject, $message, $from);
-	
-	//if POST was used, display the message straight away
-	if ($_POST) {
 
-		if ($result) {
-			echo "Mensaje enviado";
-		}else {
-			echo "Error al actualizar";
-		}
-		
-	//else if GET was used, return the boolean value so that 
-	//ajax script can react accordingly
-	//1 means success, 0 means failed
-	} else {
-		echo $result;	
-	}
+$email_subject = "Consulta campaña Clínica de ojos";
+$email_subject2 = "Confirmación de trabajo Habla!";
 
-//if the errors array has values
+// Aquí se deberían validar los datos ingresados por el usuario
+if(!isset($_POST['name']) ||
+!isset($_POST['phone']) ||
+!isset($_POST['message'])) {
+
+echo "<b>Ocurrió un error y el formulario no ha sido enviado. </b><br />";
+echo "Por favor, vuelva atrás y verifique la información ingresada<br />";
+die();
+}
+
+$email_message2 = "<h1>Detalles del formulario :</h1><br>";
+$email_message2 .= "<p>Nombre: " . $_POST['name'] ."</p>";
+$email_message2 .= "<p>Teléfono: " . $_POST['phone'] ."</p>";
+$email_message2 .= "<p>Mensaje: " . $_POST['message'] ."</p>";
+
+
+//inicio script grabar datos en csv
+$fichero = 'terminos y condiciones aceptados.csv';//nombre archivo ya creado
+//crear linea de datos separado por coma
+$fecha=date("d-m-y H:i:s");
+$linea = $fecha.";".$nombre.";".$telefono.";".$mensaje."\n";
+// Escribir la linea en el fichero
+file_put_contents($fichero, $linea, FILE_APPEND | LOCK_EX);
+//fin grabar datos
+// $message=$message.' local='.$local;
+// $mail = new PHPMailer;
+// $mail->isSMTP();
+
+$mail = new PHPMailer;
+$mail->isSMTP();
+$mail->SMTPDebug = 4;
+$mail->Debugoutput = 'html';
+
+$mail->Host = 'silex14web.com';
+$mail->Port = 2525;
+$mail->SMTPAuth = true;
+$mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+
+$mail->Username = 'quien-habla.com.ar';
+$mail->Password = 'Habla753';
+$mail->setFrom('quien@habla.com.ar', 'Habla');
+
+$mail->addReplyTo('quien@habla.com.ar','Habla');
+
+$mail->addAddress('sdesigncba@gmail.com','Habla');
+// $mail->addCc('cristiancastro.pr1991@gmail.com','Clínica Santia Lucia');
+// $mail->addCc('quirofanosantaluciasalta@gmail.com','Clínica Santia Lucia');
+$mail->isHTML(true);
+$mail->Subject = $email_subject;
+$mail->Body    = $email_message2;
+$mail->CharSet = 'UTF-8';
+$mail->Send();
+
+
+if (!$mail->send()) {
+    $mail_enviado=false;
+    $mail_error .= 'Mailer Error: '.$mail->ErrorInfo;
 } else {
-	//display the errors message
-	for ($i=0; $i<count($errors); $i++) echo $errors[$i] . '<br/>';
-	echo '<a href="index.php">Volver</a>';
-	exit;
+    $mail_enviado=true;
+    $mail_error='Mensaje Enviado, Gracias';
 }
+// Ahora se envía el e-mail usando la función mail() de PHP
+//$headers = 'From: Ralseff <info@ralseff.com>' . "\r\n" .
+//    'Reply-To: noreply@ralseff.com' . "\r\n" .
+//    'Cc: ralseff@chimpancedigital.com.ar' . "\r\n" .
+//    'X-Mailer: PHP/' . phpversion();
+//$mail_enviado = @mail($email_to, utf8_decode($email_subject), utf8_decode($email_message), $headers);
 
 
-//Simple mail function with HTML header
-function sendmail($to, $subject, $message, $from) {
-	$headers = "MIME-Version: 1.0" . "\r\n";
-	$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-	$headers .= 'From: ' . $from . "\r\n";
-	
-	$result = mail($to,$subject,$message,$headers);
-	
-	if ($result) {
-	echo "Mensaje enviado";
-}else {
-	echo "Error al actualizar";
-}
+if($mail_enviado)
+{
+echo "<script>location.href='gracias.html';</script>";
 
 }
+else
+{
+	echo "no se pudo enviar" ;
+}
+
+// Envia un e-mail para el remitente, agradeciendo la visita en el sitio, y diciendo que en breve el e-mail sera respondido. 
+// $mensaje2  = "Hola" . $_POST['name'] . ". Gracias por contactarnos. Un asesor se comunicará con usted a la brevedad..."; 
+// $mensaje2 .= "PD - No es necesario responder este mensaje."; 
+// $envia =  mail($_POST['email'],"Su mensaje fué recibido!",$mensaje2,$headers);
+
+
 
 ?>
