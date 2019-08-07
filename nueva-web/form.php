@@ -83,6 +83,7 @@ $mail->Body    = $email_message2;
 $mail->CharSet = 'UTF-8';
 $mail->Send();
 
+$mail->ClearAllRecipients();
 
 $mail2 = new PHPMailer(true);
 $mail2->isSMTP();
