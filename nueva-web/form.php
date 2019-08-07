@@ -116,6 +116,7 @@ $mail2->Send();
 
 
 $mail->CharSet = 'UTF-8';
+$mail2->CharSet = 'UTF-8';
 if (!$mail->send()) {
     $mail_enviado=false;
     $mail_error .= 'Mailer Error: '.$mail->ErrorInfo;
