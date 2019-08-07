@@ -54,7 +54,7 @@ file_put_contents($fichero, $linea, FILE_APPEND | LOCK_EX);
 
 $mail = new PHPMailer;
 $mail->isSMTP();
-$mail->SMTPDebug = 0;
+$mail->SMTPDebug = 4;
 $mail->Debugoutput = 'html';
 
 $mail->Host = 'silex14web.com';
